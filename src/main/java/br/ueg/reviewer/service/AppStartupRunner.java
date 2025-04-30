@@ -49,24 +49,32 @@ public class AppStartupRunner implements ApplicationRunner {
 
         UserGroup userGroup = userGroupRepository.findByName("admin");
 
-
         User user = null;
         user = User.builder()
                 .id(1L)
                 .email("teste@gmail.com")
                 .enabled(Boolean.TRUE)
                 .userGroup(userGroup)
-                .login("admin")
-                .name("Administrador")
+                .login("sistema")
+                .name("Sistema")
                 .password("$2y$10$1MgdNcIduZBhvlTym.PKje0nDX54UVS28jTa2U3lB3JvrqAj4fAdq") // Senha == admin
                 .build();
         this.userRepository.save(user);
+
+        Item item = null;
+        item = Item.builder()
+                .title("Título Teste")
+                .description("Descrição Teste")
+                .externalId("123456789")
+                .createdByUser(user)
+                .build();
 
         Review review = null;
         review = Review.builder()
                 .content("Postagem de teste")
                 .title("Título Teste")
                 .publicationDate(LocalDateTime.now())
+                .rating((short) 3.5)
                 .user(user)
                 .build();
         this.reviewRepository.save(review);

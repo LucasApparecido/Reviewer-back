@@ -35,5 +35,5 @@ public class Item implements GenericModel<Long> {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by_user_id")
-    private AppUser createdByUser;
+    private User createdByUser;
 }
