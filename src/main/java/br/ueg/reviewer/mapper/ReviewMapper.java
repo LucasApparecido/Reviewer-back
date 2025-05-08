@@ -14,6 +14,5 @@ import org.mapstruct.*;
         uses = {ReviewImageMapper.class}
 )
 public interface ReviewMapper extends GenericMapper<ReviewRequestDTO, ReviewResponseDTO, ReviewListDTO, Review, Long> {
-    @Mapping(source = "files", target = "images")
-    Review toModel(ReviewRequestDTO reviewRequestDTO);
+
 }

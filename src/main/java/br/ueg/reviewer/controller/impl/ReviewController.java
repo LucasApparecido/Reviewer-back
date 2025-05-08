@@ -1,5 +1,6 @@
 package br.ueg.reviewer.controller.impl;
 
+import br.ueg.genericarchitecture.controller.impl.AbstractCrudController;
 import br.ueg.reviewer.controller.IReviewController;
 import br.ueg.reviewer.dto.list.ReviewListDTO;
 import br.ueg.reviewer.dto.request.ReviewRequestDTO;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("${api.version}/review")
-public class ReviewController extends AbstractCrudFileController<
+public class ReviewController extends AbstractCrudController<
         ReviewRequestDTO, ReviewResponseDTO, ReviewListDTO, Review, ReviewService, ReviewMapper, Long>
         implements IReviewController {
 

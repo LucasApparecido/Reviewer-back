@@ -39,9 +39,8 @@ public class AppStartupRunner implements ApplicationRunner {
     private InitializerService initializerService;
 
     public void initDados() {
-
         LOG.info("Iniciando a execução do método initDados()");
-        if(!ddlAuto.equals(CREATE) && !ddlAuto.equals(CREATE_DROP)) {
+        if (!ddlAuto.equals(CREATE) && !ddlAuto.equals(CREATE_DROP)) {
             return;
         }
 
@@ -49,35 +48,35 @@ public class AppStartupRunner implements ApplicationRunner {
 
         UserGroup userGroup = userGroupRepository.findByName("admin");
 
-        User user = null;
-        user = User.builder()
+        User user = User.builder()
                 .id(1L)
                 .email("teste@gmail.com")
                 .enabled(Boolean.TRUE)
                 .userGroup(userGroup)
                 .login("sistema")
                 .name("Sistema")
+                .createdAt(LocalDateTime.now())
                 .password("$2y$10$1MgdNcIduZBhvlTym.PKje0nDX54UVS28jTa2U3lB3JvrqAj4fAdq") // Senha == admin
                 .build();
         this.userRepository.save(user);
 
-        Item item = null;
-        item = Item.builder()
+        Item item = Item.builder()
                 .title("Título Teste")
                 .description("Descrição Teste")
                 .externalId("123456789")
                 .createdByUser(user)
                 .build();
 
-        Review review = null;
-        review = Review.builder()
+        Review review = Review.builder()
                 .content("Postagem de teste")
                 .title("Título Teste")
                 .publicationDate(LocalDateTime.now())
-                .rating((short) 3.5)
+                .rating((short) 3)
+                .createdAt(LocalDateTime.now())
                 .user(user)
                 .build();
         this.reviewRepository.save(review);
+
         LOG.info("Finalizando a execução do método initDados()");
     }
 

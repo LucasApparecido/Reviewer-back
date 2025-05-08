@@ -14,7 +14,7 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReviewRequestDTO implements DTOFile {
+public class ReviewRequestDTO{
     private Long id;
 
     @MandatoryField(name = "título")
@@ -23,7 +23,4 @@ public class ReviewRequestDTO implements DTOFile {
     @MandatoryField(name = "conteúdo", length = 10000)
     private String content;
 
-
-    @MandatoryField(name = "imagem(ns)")
-    private List<FileDTO> files;
 }

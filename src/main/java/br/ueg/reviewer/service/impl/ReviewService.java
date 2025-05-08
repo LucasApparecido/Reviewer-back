@@ -40,8 +40,5 @@ public class ReviewService extends AbstractService<ReviewRequestDTO, ReviewRespo
         User user = new User();
         user.setId(((CredentialDTO) CredentialProvider.newInstance().getCurrentInstance()).getId());
         data.setUser(user);
-        for (ReviewImage image : data.getImages()) {
-            image.setReview(data);
-        }
     }
 }

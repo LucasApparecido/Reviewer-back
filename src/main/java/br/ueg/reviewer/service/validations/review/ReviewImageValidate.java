@@ -12,11 +12,5 @@ import java.util.List;
 public class ReviewImageValidate implements IValidations<Review> {
     @Override
     public void validate(Review data, ValidationActionsEnum action, List<Message> messagesToThrow) {
-        for (ReviewImage image : data.getImages()) {
-            String contentType = image.getContentType();
-            if (!ReviewImage.ALLOWED_MIME_TYPES.contains(contentType)) {
-                messagesToThrow.add(new Message(ErrorEnum.IMAGE_CONTENT_TYPE_INVALID, contentType));
-            }
-        }
     }
 }

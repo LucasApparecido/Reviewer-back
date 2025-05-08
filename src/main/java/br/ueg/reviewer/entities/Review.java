@@ -38,7 +38,7 @@ public class Review implements GenericModel<Long> {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id", nullable = false)
+    @JoinColumn(name = "item_id", nullable = true)
     private Item item;
 
     @Column(name = "title")
@@ -50,16 +50,15 @@ public class Review implements GenericModel<Long> {
     @Column(name = "publication_date")
     private LocalDateTime publicationDate;
 
-    @Column(name = "rating", nullable = false)
+    @Column(name = "rating")
     private Short rating;
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            mappedBy = "review"
-    )
-    private List<ReviewImage> images;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
 }
